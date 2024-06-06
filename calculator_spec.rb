@@ -26,5 +26,9 @@ RSpec.describe Calculator do
             result = calculator.add('//;\n1;2')
             expect(result).to eq(3)
         end
+
+        it 'throws an exception “negatives not allowed” - and the negative that was passed.' do
+            expect {calculator.add('//;\n1;2;3;-1;-2')}.to raise_error("negatives not allowed -1,-2")
+        end
     end
 end
