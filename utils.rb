@@ -18,4 +18,11 @@ module Utils
         end
         delimiter
     end
+
+    def format_string(str, delimiter)
+        str = str[str.index(/\d/)..]
+        str.gsub!(delimiter[0], ',')
+        str.gsub!(delimiter[1], ',') unless delimiter[1].nil?
+        str
+    end
 end
