@@ -12,6 +12,9 @@ module Utils
         elsif str.start_with?(/\/\/\[.\]\[.\]\\n/)
             delimiter << str[3]
             delimiter << str[6]
+        elsif str.start_with?(/\/\/\[.+\]\[.+\]\\n/)
+            delimiter << str[3..str.index(']')-1]
+            delimiter << str[str.rindex('[')+1..str.rindex(']')-1]
         end
         delimiter
     end
