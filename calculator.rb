@@ -13,7 +13,7 @@ class Calculator
         num_array = str.gsub('\n',',').split(',').each do |ch|
             num = ch.to_i
             negative_num << num if num < 0
-            sum += num
+            sum += num if num <= 1000
         end
         raise "negatives not allowed #{negative_num.join(',')}" unless negative_num.empty?
         sum
