@@ -1,6 +1,14 @@
 class Calculator
     def add(str)
         sum = 0
+        delimiter = ''
+        if str.start_with?(/\/\/.\\n/) 
+            delimiter = str[2]
+        end
+        unless delimiter.empty?
+            str = str[5..]
+            str.gsub!(delimiter, ',')
+        end
         num_array = str.gsub('\n',',').split(',').each do |ch|
             num = ch.to_i
             sum += num

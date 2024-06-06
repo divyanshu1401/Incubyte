@@ -21,5 +21,10 @@ RSpec.describe Calculator do
             result = calculator.add('1000,100\n10\n1')
             expect(result).to eq(1111)
         end
+
+        it 'Support different delimiters, returns an integer, sum of the numbers' do
+            result = calculator.add('//;\n1;2')
+            expect(result).to eq(3)
+        end
     end
 end
