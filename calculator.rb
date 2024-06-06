@@ -1,17 +1,11 @@
+require_relative 'utils'
 class Calculator
+    include Utils
+
     def add(str)
         sum = 0
         negative_num = []
-        delimiter = []
-        if str.start_with?(/\/\/.\\n/) 
-            delimiter << str[2]
-        elsif str.start_with?(/\/\/\[.{3}\]\\n/)
-            delimiter << str[3..5]
-        elsif str.start_with?(/\/\/\[.\]\[.\]\\n/)
-            delimiter << str[3]
-            delimiter << str[6]
-        end
-
+        delimiter = set_delimiter(str)
         unless delimiter.empty?
             str = str[str.index(/\d/)..]
             str.gsub!(delimiter[0], ',')
@@ -24,10 +18,6 @@ class Calculator
         end
         check_negatives(negative_num)
         sum
-    end
-
-    def check_negatives(num)
-        raise "negatives not allowed #{num.join(',')}" unless num.empty?
     end
 end
 
