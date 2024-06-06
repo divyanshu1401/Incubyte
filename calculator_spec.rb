@@ -11,5 +11,10 @@ RSpec.describe Calculator do
         it 'raises an error when called without a parameter' do
             expect { calculator.add() }.to raise_error(ArgumentError)
         end
+
+        it 'returns an integer, sum of the numbers' do
+            result = calculator.add("1000,100,10,1")
+            expect(result).to eq(1111)
+        end
     end
 end
