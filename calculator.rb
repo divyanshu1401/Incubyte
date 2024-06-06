@@ -5,9 +5,12 @@ class Calculator
         delimiter = ''
         if str.start_with?(/\/\/.\\n/) 
             delimiter = str[2]
+        elsif str.start_with?(/\/\/\[.{3}\]\\n/)
+            delimiter = str[3..5]
         end
+
         unless delimiter.empty?
-            str = str[5..]
+            str = str[str.index(/\d/)..]
             str.gsub!(delimiter, ',')
         end
         num_array = str.gsub('\n',',').split(',').each do |ch|

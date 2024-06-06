@@ -35,5 +35,10 @@ RSpec.describe Calculator do
             result = calculator.add('1,2,3,10001,1')
             expect(result).to eq(7)
         end
+
+        it 'supports delimiters of any length, returns an integer, sum of the numbers' do
+            result = calculator.add('//[***]\n1***2***3')
+            expect(result).to eq(6)
+        end
     end
 end
