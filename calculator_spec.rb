@@ -40,5 +40,10 @@ RSpec.describe Calculator do
             result = calculator.add('//[***]\n1***2***3')
             expect(result).to eq(6)
         end
+
+        it 'supports multiple delimiters, returns an integer, sum of the numbers' do
+            result = calculator.add('//[*][%]\n1*2%3')
+            expect(result).to eq(6)
+        end
     end
 end

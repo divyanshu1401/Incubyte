@@ -2,24 +2,32 @@ class Calculator
     def add(str)
         sum = 0
         negative_num = []
-        delimiter = ''
+        delimiter = []
         if str.start_with?(/\/\/.\\n/) 
-            delimiter = str[2]
+            delimiter << str[2]
         elsif str.start_with?(/\/\/\[.{3}\]\\n/)
-            delimiter = str[3..5]
+            delimiter << str[3..5]
+        elsif str.start_with?(/\/\/\[.\]\[.\]\\n/)
+            delimiter << str[3]
+            delimiter << str[6]
         end
 
         unless delimiter.empty?
             str = str[str.index(/\d/)..]
-            str.gsub!(delimiter, ',')
+            str.gsub!(delimiter[0], ',')
+            str.gsub!(delimiter[1], ',') unless delimiter[1].nil?
         end
         num_array = str.gsub('\n',',').split(',').each do |ch|
             num = ch.to_i
             negative_num << num if num < 0
             sum += num if num <= 1000
         end
-        raise "negatives not allowed #{negative_num.join(',')}" unless negative_num.empty?
+        check_negatives(negative_num)
         sum
+    end
+
+    def check_negatives(num)
+        raise "negatives not allowed #{num.join(',')}" unless num.empty?
     end
 end
 
