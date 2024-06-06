@@ -1,7 +1,7 @@
 class Calculator
     def add(str)
         sum = 0
-        num_array = str.split(',').each do |ch|
+        num_array = str.gsub('\n',',').split(',').each do |ch|
             num = ch.to_i
             sum += num
         end
